@@ -1,6 +1,5 @@
 import './App.css'
 import { Route, Switch } from 'react-router-dom'
-import Home from './views/Home'
 import Profile from './views/Profile'
 import Menu from './views/Menu'
 import Cart from './views/Cart'

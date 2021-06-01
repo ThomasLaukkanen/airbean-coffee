@@ -1,5 +1,5 @@
 function Menu() {
-  return <div></div>
+  return <div>coffee</div>
 }
 
 export default Menu
