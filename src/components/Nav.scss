@@ -1,18 +1,54 @@
-.navMain {
-  position: relative;
+@import '../assets/colors';
+.navWrapper {
+  position: fixed;
+
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 44;
   height: 100vh;
-  button {
-    position: absolute;
-    left: 16px;
-    top: 16px;
-    background: none;
-    border: none;
+  background: $brown;
+
+  .navMain {
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 32px;
+      }
+      a:hover {
+        color: #eee;
+      }
+    }
+    li {
+      list-style: none;
+      text-align: center;
+      height: 45 px;
+    }
+    button {
+      position: fixed;
+      left: 16px;
+      top: 16px;
+      background: none;
+      border: none;
+      z-index: 888;
+      display: block;
+    }
+    .line {
+      width: 48px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      margin: 32px;
+    }
   }
-  .line {
-    width: 48px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-  }
+}
+
+.showNav {
+  transform: translateY(-100vh);
 }

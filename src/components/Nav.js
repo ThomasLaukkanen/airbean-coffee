@@ -1,21 +1,34 @@
 import navicon from '../assets/navicon.svg'
 import naviconC from '../assets/naviconC.svg'
 import './Nav.scss'
+import { Link } from 'react-router-dom'
+
 function Nav() {
+  function toggleNav() {
+    document.querySelector('.navWrapper').classList.toggle('showNav')
+  }
   return (
-    <header>
+    <header className="navWrapper">
       <nav className="navMain">
-        <button>
+        <button onClick={toggleNav}>
           <img src={naviconC} alt="nav" />
         </button>
         <ul>
-          <li>Menu</li>
+          <li>
+            <Link to="/menu">Menu</Link>
+          </li>
           <div className="line" />
-          <li>Vårt kaffe</li>
+          <li>
+            <Link to="/about">Vårt kaffe</Link>
+          </li>
           <div className="line" />
-          <li>Min profil</li>
+          <li>
+            <Link to="/profil">Min profil</Link>
+          </li>
           <div className="line" />
-          <li>Orderstatus</li>
+          <li>
+            <Link to="/status">Orderstatus</Link>
+          </li>
         </ul>
       </nav>
     </header>
