@@ -5,9 +5,11 @@ import Menu from './views/Menu'
 import Cart from './views/Cart'
 import Status from './views/Status'
 import About from './views/About'
+import Nav from './components/Nav'
 function App() {
   return (
     <div className="App">
+      <Nav />
       <Switch>
         <Route path="/" exact component={Menu} />
         <Route path="/profile" exact component={Profile} />

@@ -1,0 +1,58 @@
+@import '../assets/colors';
+
+.menuWrapper {
+  background: #f3e4e1;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  header {
+  }
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 42px;
+    text-align: center;
+    line-height: 120%;
+    color: $brown;
+  }
+  ul {
+    padding: 32px;
+    li {
+      display: flex;
+      justify-content: space-between;
+
+      list-style-type: none;
+      h3 {
+        font-family: PT Serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 23px;
+        line-height: 120%;
+        color: $brown;
+      }
+      .dots {
+        color: rgba(0, 0, 0, 0.4);
+        font-size: 12px;
+      }
+
+      small {
+        color: $brown;
+      }
+    }
+  }
+  button {
+    background: transparent;
+    border: none;
+  }
+  .addButton {
+    width: 32px;
+    height: 32px;
+  }
+  footer {
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+  }
+}

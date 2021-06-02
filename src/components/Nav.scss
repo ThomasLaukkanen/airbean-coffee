@@ -1,0 +1,18 @@
+.navMain {
+  position: relative;
+  z-index: 44;
+  height: 100vh;
+  button {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    background: none;
+    border: none;
+  }
+  .line {
+    width: 48px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+  }
+}
