@@ -1,7 +1,18 @@
 @import '../assets/colors';
+.buttonMenu {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  background: none;
+  border: none;
+  z-index: 888;
+  display: block;
+}
+.buttonMenu:hover {
+  cursor: pointer;
+}
 .navWrapper {
   position: fixed;
-
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -9,6 +20,7 @@
   z-index: 44;
   height: 100vh;
   background: $brown;
+  transition: transform 0.4s ease-in;
 
   .navMain {
     ul {
@@ -22,7 +34,7 @@
         font-size: 32px;
       }
       a:hover {
-        color: #eee;
+        color: $green;
       }
     }
     li {
@@ -30,15 +42,7 @@
       text-align: center;
       height: 45 px;
     }
-    button {
-      position: fixed;
-      left: 16px;
-      top: 16px;
-      background: none;
-      border: none;
-      z-index: 888;
-      display: block;
-    }
+
     .line {
       width: 48px;
       height: 1px;
@@ -49,6 +53,7 @@
   }
 }
 
-.showNav {
-  transform: translateY(-100vh);
+.hideNav {
+  transform: translateX(-100vw);
+  transition: transform 0.35s linear;
 }
