@@ -1,13 +1,9 @@
 import './Menu.scss'
-import header from '../assets/header.svg'
 import footer from '../assets/footer.svg'
 import addButton from '../assets/addButton.svg'
 function Menu() {
   return (
     <div className="menuWrapper">
-      <header>
-        <img src={header} alt="flowers" />
-      </header>
       <h1>Menu</h1>
       <ul>
         <li>

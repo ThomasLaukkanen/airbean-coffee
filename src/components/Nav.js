@@ -2,26 +2,26 @@ import navicon from '../assets/navicon.svg'
 import naviconC from '../assets/naviconC.svg'
 import './Nav.scss'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import header from '../assets/header.svg'
 
 function Nav() {
-  const [open, setOpen] = useState(naviconC)
-  useEffect(() => {}, [open])
+  const [open, setOpen] = useState(navicon)
 
-  let navWrapper = document.querySelector('.navWrapper')
+  // let navWrapper = document.querySelector('.navWrapper')
 
   function toggleNav() {
-    document.querySelector('.navWrapper').classList.toggle('hideNav')
-    navWrapper.classList.contains('hideNav')
-      ? setOpen(navicon)
-      : setOpen(naviconC)
+    // navWrapper.classList.toggle('showNav')
+    open === navicon ? setOpen(naviconC) : setOpen(navicon)
   }
   return (
     <header>
+      <img className="navFlowers" src={header} alt="flowers" />
+
       <button className="buttonMenu" onClick={toggleNav}>
         <img src={open} alt="nav" />
       </button>
-      <div className="navWrapper">
+      <div className={`navWrapper ${open === naviconC ? 'showNav' : ''}`}>
         <nav className="navMain">
           <ul>
             <li>
@@ -37,7 +37,7 @@ function Nav() {
             </li>
             <div className="line" />
             <li>
-              <Link onClick={toggleNav} to="/profil">
+              <Link onClick={toggleNav} to="/profile">
                 Min profil
               </Link>
             </li>

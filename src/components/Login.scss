@@ -1,0 +1,57 @@
+@import '../assets/colors';
+.loginWrapper {
+  position: fixed;
+  z-index: 999;
+  max-width: 341px;
+  margin-top: 82px;
+  background: $pink;
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1,
+  p {
+    text-align: center;
+    line-height: 120%;
+    color: $brown;
+  }
+  small {
+    color: $brown;
+  }
+  p {
+    font-size: 16px;
+    font-family: 'Work Sans';
+    line-height: 150%;
+  }
+
+  img {
+    margin: 32px;
+  }
+  input[type='text'],
+  input[type='email'] {
+    width: 310px;
+    height: 48px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px #2f2926 solid;
+    padding-left: 16px;
+    font-size: 16px;
+    font-family: 'Work Sans';
+  }
+  input[type='text'],
+  input[type='email'] {
+    margin-bottom: 16px;
+  }
+
+  button {
+    margin: 16px auto;
+    border-radius: 50px;
+    background: $brown;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    width: 248px;
+    height: 55px;
+  }
+}
