@@ -1,7 +1,7 @@
 @import '../assets/colors';
 .loginWrapper {
   position: fixed;
-  z-index: 999;
+  z-index: 200;
   max-width: 341px;
   margin-top: 82px;
   background: $pink;
@@ -10,6 +10,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  padding-bottom: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
+
   h1,
   p {
     text-align: center;
@@ -23,10 +28,15 @@
     font-size: 16px;
     font-family: 'Work Sans';
     line-height: 150%;
+    margin-bottom: 32px;
   }
 
+  h1 {
+    font-size: 32px;
+  }
   img {
     margin: 32px;
+    margin-bottom: 0px;
   }
   input[type='text'],
   input[type='email'] {
@@ -45,13 +55,28 @@
   }
 
   button {
-    margin: 16px auto;
+    margin: 40.77px;
     border-radius: 50px;
     background: $brown;
     border: none;
-    font-size: 28px;
     color: #fff;
     width: 248px;
     height: 55px;
+    font-family: 'PT Serif';
+    font-size: 24px;
+    line-height: 120%;
   }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.loginWrapper > form:nth-child(4) > label:nth-child(5) {
+  align-self: start;
+  margin-left: 10px;
+}
+
+.loginWrapper > form:nth-child(4) > label:nth-child(5) > input:nth-child(1) {
+  margin-right: 6px;
 }
