@@ -1,9 +1,48 @@
 import Login from '../components/Login'
 import './Profile.scss'
+import profilePicture from '../assets/profilePicture.svg'
 function Profile() {
+  const loggedIn = false
   return (
     <div className="profileWrapper">
-      <Login />
+      {loggedIn ? (
+        <Login />
+      ) : (
+        <div className="orderWrapper">
+          <section className="profileInfo">
+            <img src={profilePicture} alt="profilepicture" />
+            <h2>Sixten KaffeLövér</h2>
+            <h4>sixten.kaffelover@zocom.se</h4>
+          </section>
+          <section>
+            <h2>Orderhistorik</h2>
+            <ul>
+              <li>
+                <div>
+                  <span className="orderId">#AB1123282323Z</span>
+                  <br />
+
+                  <span className="totalOrderSum">Total ordersumma</span>
+                </div>
+                <div className="totalOrderSum">
+                  <span className="orderDate">20/03/06</span>
+                  <br />
+                  <span className="totalOrderSum">443kr</span>
+                </div>
+              </li>
+              <div className="lineThin" />
+            </ul>
+          </section>
+          <div className="line" />
+          <section>
+            <h5 className="totalSpent">
+              <span>Totalt spenderat</span>
+              <span>1669 kr</span>
+            </h5>
+            <h5></h5>
+          </section>
+        </div>
+      )}
     </div>
   )
 }

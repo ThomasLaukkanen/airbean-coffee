@@ -1,5 +1,6 @@
 import '../views/About.scss'
 import owner from '../assets/owner.png'
+import Footer from '../components/Footer'
 function About() {
   return (
     <div className="aboutWrapper">
@@ -38,6 +39,7 @@ function About() {
           <h5>VD & Grundare</h5>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import footer from '../assets/footer.svg'
+import './Footer.scss'
 
 function Footer() {
   return (
