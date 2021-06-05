@@ -1,9 +1,15 @@
 import './Menu.scss'
 import footer from '../assets/footer.svg'
 import addButton from '../assets/addButton.svg'
+import bag from '../assets/bag.svg'
+import Cart from '../components/Cart'
 function Menu() {
   return (
     <div className="menuWrapper">
+      <Cart />
+      <button className="cartIconButton">
+        <img src={bag} alt="cartIcon" />
+      </button>
       <h1>Menu</h1>
       <ul>
         <li>
