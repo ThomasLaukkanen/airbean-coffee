@@ -1,9 +1,11 @@
 import './Cart.scss'
 import dots from '../assets/dots.svg'
 import arrow from '../assets/arrow.svg'
+import polygon from '../assets/polygon.svg'
 function Cart() {
   return (
     <div className="cartWrapper">
+      <img src={polygon} alt="polygon" className="polygon" />
       <h1>Din beställning</h1>
 
       <ul>

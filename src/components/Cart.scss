@@ -16,6 +16,7 @@
   align-items: center;
   padding-left: 16px;
   padding-right: 16px;
+
   .upArrow {
     width: 8px;
     height: 4.7px;
@@ -58,25 +59,33 @@
     cursor: pointer;
   }
   ul {
-    border: 1px solid red;
     padding: 0;
     width: 100%;
     li > div {
       display: flex;
       justify-content: space-between;
       width: 100%;
-    }
-    li {
+      height: 40px;
     }
   }
   .dots {
     overflow: hidden;
-    object-position: 0px 9px;
-    max-width: 50%;
+    object-position: 0px -4px;
+    max-width: 80%;
   }
   .amountPicker {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    height: 10px;
+  }
+  .polygon {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    right: 16px;
+    top: -10px;
+    z-index: 800;
   }
 }
