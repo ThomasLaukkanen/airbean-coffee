@@ -1,11 +1,15 @@
 import Login from '../components/Login'
 import './Profile.scss'
 import profilePicture from '../assets/profilePicture.svg'
+
+import { useDispatch, useSelector } from 'react-redux'
+
 function Profile() {
-  const loggedIn = false
+  let loggedIn = useSelector((state) => state.loggedIn)
+
   return (
     <div className="profileWrapper">
-      {loggedIn ? (
+      {!loggedIn ? (
         <Login />
       ) : (
         <div className="orderWrapper">

@@ -3,27 +3,60 @@ import footer from '../assets/footer.svg'
 import addButton from '../assets/addButton.svg'
 import bag from '../assets/bag.svg'
 import Cart from '../components/Cart'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCoffee } from '../actions/coffeeAction'
+import dotsMenu from '../assets/dotsMenu.svg'
+
 function Menu() {
+  const [show, setShow] = useState(false)
+  const dispatch = useDispatch()
+  const menu = useSelector((state) => state.menu)
+
+  // FETCH COFFEE MENU
+  async function getCoffee() {
+    const response = await fetch('http://localhost:3002/api/coffee')
+    const data = await response.json()
+    console.log(data)
+    dispatch(setCoffee(data))
+  }
+
+  // RUN ON MENU VIEW LOAD
+  useEffect(() => {
+    getCoffee()
+  }, [])
   return (
     <div className="menuWrapper">
-      <Cart />
-      <button className="cartIconButton">
+      {show ? <Cart /> : ''}
+      <button
+        onClick={() => {
+          setShow(!show)
+        }}
+        className="cartIconButton"
+      >
         <img src={bag} alt="cartIcon" />
       </button>
       <h1>Menu</h1>
       <ul>
-        <li>
-          <button>
-            <img className="addButton" src={addButton} alt="button" />
-          </button>
-          <div>
-            <h3>
-              Bryggkaffe<span className="dots">............</span>
-            </h3>
-            <small>Bryggd på månadens bönor</small>
-          </div>
-          <h3>49 kr</h3>
-        </li>
+        {menu.map((item) => {
+          return (
+            <li key={item.id}>
+              <button>
+                <img className="addButton" src={addButton} alt="button" />
+              </button>
+              <div>
+                <div className="listFlex">
+                  <h3>{item.title}</h3>
+                  <figure>
+                    <img src={dotsMenu} alt="..." className="dotsMenu" />
+                  </figure>
+                  <h3>{item.price} kr</h3>
+                </div>
+                <small>{item.desc}</small>
+              </div>
+            </li>
+          )
+        })}
       </ul>
       <footer>
         <img src={footer} alt="flowers" />

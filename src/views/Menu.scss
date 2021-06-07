@@ -20,7 +20,6 @@
   }
 
   img {
-    width: 100%;
   }
 
   h1 {
@@ -31,13 +30,19 @@
     margin-top: 119px;
   }
   ul {
-    padding: 32px;
+    // padding: 32px;
     max-width: 600px;
     li {
+      width: 311px;
+      list-style-type: none;
+
       display: flex;
       justify-content: space-between;
 
-      list-style-type: none;
+      .listFlex {
+        display: flex;
+        justify-content: space-between;
+      }
       h3 {
         font-family: PT Serif;
         font-style: normal;
@@ -45,10 +50,12 @@
         font-size: 23px;
         line-height: 120%;
         color: $brown;
+        flex-grow: 1;
       }
-      .dots {
-        color: rgba(0, 0, 0, 0.4);
-        font-size: 12px;
+      figure {
+        overflow: hidden;
+      }
+      .dotsMenu {
       }
 
       small {
@@ -59,8 +66,13 @@
   button {
     background: transparent;
     border: none;
+
+    height: 32px;
   }
   .addButton {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
   }
   footer {
     position: absolute;

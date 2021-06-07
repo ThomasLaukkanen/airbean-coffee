@@ -1,6 +1,25 @@
 import './Login.scss'
 import logoMini from '../assets/logoMini.svg'
+import { setLogin } from '../actions/coffeeAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+
 function Login() {
+  const { username, setUsername } = useState('')
+  const { email, setEmail } = useState('')
+  const dispatch = useDispatch('')
+
+  async function createUser() {
+    const response = await fetch('http://localhost:3002/api/account', {
+      body: `{username: ${username} , email: ${email} }`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    })
+    const data = await response.json()
+  }
+
   return (
     <div className="loginWrapper">
       <img src={logoMini} alt="logo" />
