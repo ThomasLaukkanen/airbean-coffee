@@ -1,24 +1,34 @@
 import './Login.scss'
 import logoMini from '../assets/logoMini.svg'
-// import { setLogin } from '../actions/coffeeAction'
-// import { useDispatch, useSelector } from 'react-redux'
+import { setLogin } from '../actions/coffeeAction'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 
 function Login() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
-  // const dispatch = useDispatch('')
 
-  async function createUser() {
-    const response = await fetch('http://localhost:3002/api/account', {
-      body: `{"username": ${username} , "email": ${email} }`,
+  const dispatch = useDispatch('')
+
+  async function createUser(event) {
+    event.preventDefault()
+    let bodyData = { username: username, email: email }
+    let settings = {
+      body: JSON.stringify(bodyData),
       headers: {
         'Content-Type': 'application/json'
       },
       method: 'POST'
-    })
+    }
+
+    const response = await fetch('http://localhost:3002/api/account', settings)
     const data = await response.json()
     console.log(data)
+    if (data.success) {
+      dispatch(setLogin(true))
+    } else if (data.success === false) {
+      alert(data.message)
+    }
   }
 
   return (
