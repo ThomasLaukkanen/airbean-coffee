@@ -1,23 +1,24 @@
 import './Login.scss'
 import logoMini from '../assets/logoMini.svg'
-import { setLogin } from '../actions/coffeeAction'
-import { useDispatch, useSelector } from 'react-redux'
+// import { setLogin } from '../actions/coffeeAction'
+// import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 
 function Login() {
-  const { username, setUsername } = useState('')
-  const { email, setEmail } = useState('')
-  const dispatch = useDispatch('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  // const dispatch = useDispatch('')
 
   async function createUser() {
     const response = await fetch('http://localhost:3002/api/account', {
-      body: `{username: ${username} , email: ${email} }`,
+      body: `{"username": ${username} , "email": ${email} }`,
       headers: {
         'Content-Type': 'application/json'
       },
       method: 'POST'
     })
     const data = await response.json()
+    console.log(data)
   }
 
   return (
@@ -31,13 +32,21 @@ function Login() {
         <label>
           <small>Namn</small>
           <br />
-          <input type="text" placeholder="Sixten Kaffelövér" />
+          <input
+            onKeyUp={(event) => setUsername(event.target.value)}
+            type="text"
+            placeholder="Sixten Kaffelövér"
+          />
         </label>
         <br />
         <label>
           <small>Epost</small>
           <br />
-          <input type="email" placeholder="sixten.kaffelover@zocom.se" />
+          <input
+            onKeyUp={(event) => setEmail(event.target.value)}
+            type="email"
+            placeholder="sixten.kaffelover@zocom.se"
+          />
         </label>
         <br />
         <label>
@@ -45,7 +54,7 @@ function Login() {
           <small>GDPR OK!</small>
         </label>
         <br />
-        <button>LOGGA IN</button>
+        <button onClick={createUser}>LOGGA IN</button>
       </form>
     </div>
   )
