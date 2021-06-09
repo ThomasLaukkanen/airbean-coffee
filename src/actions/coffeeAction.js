@@ -25,3 +25,10 @@ export const setOrders = (orders) => {
     payload: orders
   }
 }
+
+export const setEmailAccount = (email) => {
+  return {
+    type: 'SET_EMAIL',
+    payload: email
+  }
+}

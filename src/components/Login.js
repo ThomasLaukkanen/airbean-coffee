@@ -4,6 +4,7 @@ import { setLogin } from '../actions/coffeeAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { setOrders } from '../actions/coffeeAction'
+import { setEmailAccount } from '../actions/coffeeAction'
 
 function Login() {
   const [username, setUsername] = useState('')
@@ -19,6 +20,7 @@ function Login() {
     const data = await promise.json()
     console.log('GET ORDERS', data)
     dispatch(setOrders(data))
+    dispatch(setEmailAccount(email))
   }
 
   async function createUser(event) {

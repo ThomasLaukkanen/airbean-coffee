@@ -2,7 +2,8 @@ const initState = {
   menu: [],
   loggedIn: false,
   user: {},
-  orders: []
+  orders: [],
+  email: ''
 }
 
 export const coffeeReducer = (state = initState, action) => {
@@ -26,6 +27,11 @@ export const coffeeReducer = (state = initState, action) => {
       return {
         ...state,
         orders: action.payload
+      }
+    case 'SET_EMAIL':
+      return {
+        ...state,
+        email: action.payload
       }
     default:
       return state
