@@ -47,12 +47,12 @@ function Menu() {
               <button onClick={() => dispatch(setCart(item))}>
                 <img className="addButton" src={addButton} alt="button" />
               </button>
-              <div>
+              <div className="listTextWrapper">
                 <div className="listFlex">
                   <h3>{item.title}</h3>
-                  <figure>
-                    <img src={dotsMenu} alt="..." className="dotsMenu" />
-                  </figure>
+
+                  <img src={dotsMenu} alt="..." className="dotsMenu" />
+
                   <h3>{item.price} kr</h3>
                 </div>
                 <small>{item.desc}</small>
