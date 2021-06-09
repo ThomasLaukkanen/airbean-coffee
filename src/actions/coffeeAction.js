@@ -32,3 +32,10 @@ export const setEmailAccount = (email) => {
     payload: email
   }
 }
+
+export const setCart = (cart) => {
+  return {
+    type: 'SET_CART',
+    payload: cart
+  }
+}

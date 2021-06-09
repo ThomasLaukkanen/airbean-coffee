@@ -3,7 +3,8 @@ const initState = {
   loggedIn: false,
   user: {},
   orders: [],
-  email: ''
+  email: '',
+  cart: []
 }
 
 export const coffeeReducer = (state = initState, action) => {
@@ -32,6 +33,11 @@ export const coffeeReducer = (state = initState, action) => {
       return {
         ...state,
         email: action.payload
+      }
+    case 'SET_CART':
+      return {
+        ...state,
+        cart: [...state.cart, action.payload]
       }
     default:
       return state

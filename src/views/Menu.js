@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCoffee } from '../actions/coffeeAction'
 import dotsMenu from '../assets/dotsMenu.svg'
+import { setCart } from '../actions/coffeeAction'
 
 function Menu() {
   const [show, setShow] = useState(false)
@@ -25,6 +26,8 @@ function Menu() {
   useEffect(() => {
     getCoffee()
   }, [])
+
+  function addToCart() {}
   return (
     <div className="menuWrapper">
       {show ? <Cart /> : ''}
@@ -41,7 +44,7 @@ function Menu() {
         {menu.map((item) => {
           return (
             <li key={item.id}>
-              <button>
+              <button onClick={() => dispatch(setCart(item))}>
                 <img className="addButton" src={addButton} alt="button" />
               </button>
               <div>
