@@ -1,17 +1,21 @@
 import Login from '../components/Login'
 import './Profile.scss'
 import profilePicture from '../assets/profilePicture.svg'
-
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { setUser } from '../actions/coffeeAction'
 
 function Profile() {
   let loggedIn = useSelector((state) => state.loggedIn)
+  let user = useSelector((state) => state.user)
+  let orders = useSelector((state) => state.orders)
+  let dispatch = useDispatch('')
 
   async function getUser() {
-    const promise = await fetch('http://localhost:3000/api/users')
+    const promise = await fetch('http://localhost:3002/api/users')
     const data = await promise.json()
     console.log(data)
+    dispatch(setUser(data[data.length - 1]))
   }
   useEffect(() => {
     getUser()
@@ -25,7 +29,7 @@ function Profile() {
         <div className="orderWrapper">
           <section className="profileInfo">
             <img src={profilePicture} alt="profilepicture" />
-            <h2>Sixten KaffeLövér</h2>
+            <h2>{user.username}</h2>
             <h4>sixten.kaffelover@zocom.se</h4>
           </section>
           <section>

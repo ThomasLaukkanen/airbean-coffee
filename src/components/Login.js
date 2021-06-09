@@ -3,12 +3,23 @@ import logoMini from '../assets/logoMini.svg'
 import { setLogin } from '../actions/coffeeAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import { setOrders } from '../actions/coffeeAction'
 
 function Login() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
+  let user = useSelector((state) => state.user)
 
   const dispatch = useDispatch('')
+
+  async function getOrders() {
+    const promise = await fetch(
+      `http://localhost:3002/api/order/history/${user.id}`
+    )
+    const data = await promise.json()
+    console.log('GET ORDERS', data)
+    dispatch(setOrders(data))
+  }
 
   async function createUser(event) {
     event.preventDefault()
@@ -26,6 +37,10 @@ function Login() {
     console.log(data)
     if (data.success) {
       dispatch(setLogin(true))
+
+      if (user !== undefined) {
+        getOrders()
+      }
     } else if (data.success === false) {
       alert(data.message)
     }

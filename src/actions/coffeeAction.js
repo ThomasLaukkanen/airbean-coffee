@@ -11,3 +11,17 @@ export const setLogin = (boolean) => {
     payload: boolean
   }
 }
+
+export const setUser = (user) => {
+  return {
+    type: 'SET_USER',
+    payload: user
+  }
+}
+
+export const setOrders = (orders) => {
+  return {
+    type: 'SET_ORDERS',
+    payload: orders
+  }
+}

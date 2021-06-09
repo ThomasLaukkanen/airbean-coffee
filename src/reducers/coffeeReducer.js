@@ -1,6 +1,8 @@
 const initState = {
   menu: [],
-  loggedIn: false
+  loggedIn: false,
+  user: {},
+  orders: []
 }
 
 export const coffeeReducer = (state = initState, action) => {
@@ -14,6 +16,16 @@ export const coffeeReducer = (state = initState, action) => {
       return {
         ...state,
         loggedIn: action.payload
+      }
+    case 'SET_USER':
+      return {
+        ...state,
+        user: action.payload
+      }
+    case 'SET_ORDERS':
+      return {
+        ...state,
+        orders: action.payload
       }
     default:
       return state
