@@ -3,16 +3,28 @@ import dots from '../assets/dots.svg'
 import arrow from '../assets/arrow.svg'
 import polygon from '../assets/polygon.svg'
 import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
 function Cart() {
   const cartItems = useSelector((state) => state.cart)
+  const [filteredCart, setFilteredCart] = useState([])
+  useEffect(() => {
+    filteredMenu()
+  }, [cartItems])
+
+  function filteredMenu() {
+    setFilteredCart(
+      cartItems.filter((item, pos) => cartItems.indexOf(item) === pos)
+    )
+  }
+
   return (
     <div className="cartWrapper">
       <img src={polygon} alt="polygon" className="polygon" />
       <h1>Din beställning</h1>
 
       <ul>
-        {cartItems.map((cartItem) => (
-          <li>
+        {filteredCart.map((cartItem) => (
+          <li key={cartItem.id}>
             <div>
               <div className="cartTitleWrapper">
                 <span>{cartItem.title}</span>
@@ -23,7 +35,9 @@ function Cart() {
               {/* <div className="divDots" /> */}
               <div className="amountPicker">
                 <img src={arrow} className="upArrow" alt="Up arrow" />
-                <span>1</span>
+                <span>
+                  {cartItems.filter((item) => item === cartItem).length}
+                </span>
                 <img src={arrow} className="downArrow" alt="Down arrow" />
               </div>
             </div>

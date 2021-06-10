@@ -13,6 +13,7 @@ function Menu() {
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
   const menu = useSelector((state) => state.menu)
+  const cartItems = useSelector((state) => state.cart)
 
   // FETCH COFFEE MENU
   async function getCoffee() {
@@ -27,7 +28,6 @@ function Menu() {
     getCoffee()
   }, [])
 
-  function addToCart() {}
   return (
     <div className="menuWrapper">
       {show ? <Cart /> : ''}
