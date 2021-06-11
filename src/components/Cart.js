@@ -4,18 +4,33 @@ import arrow from '../assets/arrow.svg'
 import polygon from '../assets/polygon.svg'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
+import { deleteItemCart, addItemCart } from '../actions/coffeeAction'
+import { useDispatch } from 'react-redux'
 function Cart() {
-  const cartItems = useSelector((state) => state.cart)
+  const cart = useSelector((state) => state.cart)
   const [filteredCart, setFilteredCart] = useState([])
-  useEffect(() => {
-    filteredMenu()
-  }, [cartItems])
+  const [totalSum, setTotalSum] = useState(0)
+  const dispatch = useDispatch()
 
-  function filteredMenu() {
-    setFilteredCart(
-      cartItems.filter((item, pos) => cartItems.indexOf(item) === pos)
-    )
-  }
+  // const [itemCount, setItemCount] = useState(0)
+  useEffect(() => {
+    function totalCost() {
+      cart.forEach((item) => {
+        setTotalSum(totalSum + item.price)
+      })
+    }
+    function filteredMenu() {
+      setFilteredCart(cart.filter((item, pos) => cart.indexOf(item) === pos))
+    }
+
+    totalCost()
+    filteredMenu()
+  }, [cart])
+
+  // function itemCounter(cartItem) {
+  //   setItemCount(cart.filter((item) => item === cartItem).length)
+  //   return itemCount
+  // }
 
   return (
     <div className="cartWrapper">
@@ -34,11 +49,23 @@ function Cart() {
               <img src={dots} alt="dots" className="dots" />
               {/* <div className="divDots" /> */}
               <div className="amountPicker">
-                <img src={arrow} className="upArrow" alt="Up arrow" />
-                <span>
-                  {cartItems.filter((item) => item === cartItem).length}
-                </span>
-                <img src={arrow} className="downArrow" alt="Down arrow" />
+                <img
+                  src={arrow}
+                  className="upArrow"
+                  alt="Up arrow"
+                  onClick={() => {
+                    dispatch(addItemCart(cartItem))
+                  }}
+                />
+                <span>{cart.filter((item) => item === cartItem).length}</span>
+                <img
+                  src={arrow}
+                  className="downArrow"
+                  alt="Down arrow"
+                  onClick={() => {
+                    dispatch(deleteItemCart(cartItem))
+                  }}
+                />
               </div>
             </div>
           </li>
@@ -48,7 +75,7 @@ function Cart() {
         <div className="totalAmountWrapper">
           <h2>Total</h2>
           <img src={dots} alt="dots" />
-          <h2>98kr</h2>
+          <h2>{totalSum}kr</h2>
         </div>
         <small>inkl moms + drönarleverans</small>
       </div>

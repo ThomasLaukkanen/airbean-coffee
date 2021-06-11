@@ -39,3 +39,17 @@ export const setCart = (cart) => {
     payload: cart
   }
 }
+
+export const deleteItemCart = (cartItem) => {
+  return {
+    type: 'DELETE_CART_ITEM',
+    payload: cartItem
+  }
+}
+
+export const addItemCart = (cartItem) => {
+  return {
+    type: 'ADD_CART_ITEM',
+    payload: cartItem
+  }
+}
