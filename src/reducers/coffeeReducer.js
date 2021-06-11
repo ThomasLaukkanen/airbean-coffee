@@ -54,6 +54,7 @@ export const coffeeReducer = (state = initState, action) => {
         ...state,
         cart: array
       }
+
     default:
       return state
   }

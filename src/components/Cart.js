@@ -8,6 +8,7 @@ import { deleteItemCart, addItemCart } from '../actions/coffeeAction'
 import { useDispatch } from 'react-redux'
 function Cart() {
   const cart = useSelector((state) => state.cart)
+
   const [filteredCart, setFilteredCart] = useState([])
   const [totalSum, setTotalSum] = useState(0)
   const dispatch = useDispatch()
