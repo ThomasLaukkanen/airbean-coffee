@@ -13,7 +13,16 @@ function Menu() {
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
   const menu = useSelector((state) => state.menu)
+  const [totalSum, setTotalSum] = useState(0)
 
+  function addTotalCost(item) {
+    console.log(item)
+    setTotalSum(totalSum + parseInt(item.price))
+  }
+
+  function removeTotalCost(item) {
+    setTotalSum(totalSum - item.price)
+  }
   // FETCH COFFEE MENU
   async function getCoffee() {
     const response = await fetch('http://localhost:3002/api/coffee')
@@ -29,7 +38,15 @@ function Menu() {
 
   return (
     <div className="menuWrapper">
-      {show ? <Cart /> : ''}
+      {show ? (
+        <Cart
+          addTotalCost={addTotalCost}
+          removeTotalCost={removeTotalCost}
+          totalSum={totalSum}
+        />
+      ) : (
+        ''
+      )}
       <button
         onClick={() => {
           setShow(!show)
@@ -43,8 +60,17 @@ function Menu() {
         {menu.map((item) => {
           return (
             <li key={item.id}>
-              <button onClick={() => dispatch(setCart(item))}>
-                <img className="addButton" src={addButton} alt="button" />
+              <button
+                onClick={() => {
+                  dispatch(setCart(item))
+                }}
+              >
+                <img
+                  onClick={() => addTotalCost(item)}
+                  className="addButton"
+                  src={addButton}
+                  alt="button"
+                />
               </button>
               <div className="listTextWrapper">
                 <div className="listFlex">

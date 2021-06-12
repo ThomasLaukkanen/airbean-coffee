@@ -6,32 +6,19 @@ import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { deleteItemCart, addItemCart } from '../actions/coffeeAction'
 import { useDispatch } from 'react-redux'
-function Cart() {
+function Cart({ removeTotalCost, addTotalCost, totalSum }) {
   const cart = useSelector((state) => state.cart)
-
   const [filteredCart, setFilteredCart] = useState([])
-  const [totalSum, setTotalSum] = useState(0)
+
   const dispatch = useDispatch()
 
-  // const [itemCount, setItemCount] = useState(0)
   useEffect(() => {
-    function totalCost() {
-      cart.forEach((item) => {
-        setTotalSum(totalSum + item.price)
-      })
-    }
     function filteredMenu() {
       setFilteredCart(cart.filter((item, pos) => cart.indexOf(item) === pos))
     }
 
-    totalCost()
     filteredMenu()
   }, [cart])
-
-  // function itemCounter(cartItem) {
-  //   setItemCount(cart.filter((item) => item === cartItem).length)
-  //   return itemCount
-  // }
 
   return (
     <div className="cartWrapper">
@@ -39,8 +26,8 @@ function Cart() {
       <h1>Din beställning</h1>
 
       <ul>
-        {filteredCart.map((cartItem) => (
-          <li key={cartItem.id}>
+        {filteredCart.map((cartItem, index) => (
+          <li key={index}>
             <div>
               <div className="cartTitleWrapper">
                 <span>{cartItem.title}</span>
@@ -56,6 +43,7 @@ function Cart() {
                   alt="Up arrow"
                   onClick={() => {
                     dispatch(addItemCart(cartItem))
+                    addTotalCost(cartItem)
                   }}
                 />
                 <span>{cart.filter((item) => item === cartItem).length}</span>
@@ -65,6 +53,7 @@ function Cart() {
                   alt="Down arrow"
                   onClick={() => {
                     dispatch(deleteItemCart(cartItem))
+                    removeTotalCost(cartItem)
                   }}
                 />
               </div>
