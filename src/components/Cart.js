@@ -6,8 +6,12 @@ import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { deleteItemCart, addItemCart } from '../actions/coffeeAction'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+
 function Cart({ removeTotalCost, addTotalCost, totalSum }) {
+  const history = useHistory()
   const cart = useSelector((state) => state.cart)
+  let user = useSelector((state) => state.user)
   const [filteredCart, setFilteredCart] = useState([])
 
   const dispatch = useDispatch()
@@ -20,6 +24,29 @@ function Cart({ removeTotalCost, addTotalCost, totalSum }) {
     filteredMenu()
   }, [cart])
 
+  function sendOrder() {
+    async function postOrder() {
+      let itemIdArr = []
+      cart.map((item) => itemIdArr.push(item.id))
+
+      let postBody = {
+        userId: user.id,
+        items: itemIdArr
+      }
+      let settings = {
+        body: JSON.stringify(postBody),
+        headers: {
+          'Content-Type': 'Application/json'
+        },
+        method: 'POST'
+      }
+      const reponse = await fetch('http://localhost:3002/api/order', settings)
+      const data = await reponse.json()
+      console.log(data)
+    }
+    postOrder()
+    history.push('/status')
+  }
   return (
     <div className="cartWrapper">
       <img src={polygon} alt="polygon" className="polygon" />
@@ -70,7 +97,7 @@ function Cart({ removeTotalCost, addTotalCost, totalSum }) {
         <small>inkl moms + drönarleverans</small>
       </div>
 
-      <button>Take my money!</button>
+      <button onClick={sendOrder}>Take my money!</button>
     </div>
   )
 }
