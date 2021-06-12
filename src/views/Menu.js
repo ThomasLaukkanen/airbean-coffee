@@ -18,7 +18,7 @@ function Menu() {
   async function getCoffee() {
     const response = await fetch('http://localhost:3002/api/coffee')
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     dispatch(setCoffee(data))
   }
 
