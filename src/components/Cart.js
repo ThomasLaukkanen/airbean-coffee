@@ -4,7 +4,7 @@ import arrow from '../assets/arrow.svg'
 import polygon from '../assets/polygon.svg'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { deleteItemCart, addItemCart } from '../actions/coffeeAction'
+import { deleteItemCart, addItemCart, setOrders } from '../actions/coffeeAction'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -42,6 +42,7 @@ function Cart({ removeTotalCost, addTotalCost, totalSum }) {
       }
       const reponse = await fetch('http://localhost:3002/api/order', settings)
       const data = await reponse.json()
+      dispatch(setOrders(data))
       console.log(data)
     }
     postOrder()

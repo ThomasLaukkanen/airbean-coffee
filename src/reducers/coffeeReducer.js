@@ -27,7 +27,7 @@ export const coffeeReducer = (state = initState, action) => {
     case 'SET_ORDERS':
       return {
         ...state,
-        orders: action.payload
+        orders: [...state.orders, action.payload]
       }
     case 'SET_EMAIL':
       return {
