@@ -8,10 +8,10 @@ function Status() {
 
   return (
     <div className="statusWrapper">
-      {orders.items > 0 ? (
+      {orders.length > 0 ? (
         <>
           <h3>
-            Ordernummer <strong>#{orders[-1].id} </strong>
+            Ordernummer <strong>#{orders[1].id} </strong>
           </h3>
           <img src={drone} alt="drone" />
           <h1>Din beställning är på väg!</h1>
