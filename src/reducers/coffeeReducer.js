@@ -54,7 +54,11 @@ export const coffeeReducer = (state = initState, action) => {
         ...state,
         cart: array
       }
-
+    case 'RESET_CART':
+      return {
+        ...state,
+        cart: []
+      }
     default:
       return state
   }

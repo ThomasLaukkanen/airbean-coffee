@@ -14,19 +14,26 @@ function Profile() {
   const [total, setTotal] = useState(0)
 
   function countTotal() {
-    orders.map((order) => setTotal(total + order.total))
+    // orders.forEach((order) => setTotal(total + order.total))
+    setTotal(
+      orders.reduce((a, c) => {
+        return a + c.total
+      }, 0)
+    )
   }
   async function getUser() {
     const promise = await fetch('http://localhost:3002/api/users')
     const data = await promise.json()
-    console.log(data)
+    console.log('getUSER function response', data)
     dispatch(setUser(data[data.length - 1]))
   }
   useEffect(() => {
     getUser()
-    countTotal()
   }, [loggedIn])
 
+  useEffect(() => {
+    countTotal()
+  }, [])
   return (
     <div className="profileWrapper">
       {!loggedIn ? (
@@ -43,13 +50,13 @@ function Profile() {
             <ul>
               {orders.length > 0 ? (
                 orders.map((order) => (
-                  <li>
+                  <li key={order.id}>
                     <div>
                       <span className="orderId">#{order.id}</span>
                       <br />
                       <span className="totalOrderSum">Total ordersumma</span>
                     </div>
-                    <div className="totalOrderSum">
+                    <div className="totalOrderSumRight">
                       <span className="orderDate">{order.date}</span>
                       <br />
                       <span className="totalOrderSum">{order.total}kr</span>
@@ -64,7 +71,7 @@ function Profile() {
 
                     <span className="totalOrderSum">Total ordersumma</span>
                   </div>
-                  <div className="totalOrderSum">
+                  <div className="totalOrderSumRight">
                     <span className="orderDate">XX/XX/XX</span>
                     <br />
                     <span className="totalOrderSum">0kr</span>

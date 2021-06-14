@@ -53,3 +53,7 @@ export const addItemCart = (cartItem) => {
     payload: cartItem
   }
 }
+
+export const resetCart = () => {
+  return { type: 'RESET_CART' }
+}

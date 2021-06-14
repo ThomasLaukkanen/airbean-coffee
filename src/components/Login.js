@@ -18,7 +18,8 @@ function Login() {
       `http://localhost:3002/api/order/history/${user.id}`
     )
     const data = await promise.json()
-    console.log('GET ORDERS', data)
+    // console.log('GET ORDER HISTORY', data)
+    // console.log('GET ORDER HISTORY USER ID IS =', user.id)
     dispatch(setOrders(data))
     dispatch(setEmailAccount(email))
   }
@@ -36,12 +37,12 @@ function Login() {
 
     const response = await fetch('http://localhost:3002/api/account', settings)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     if (data.success) {
       dispatch(setLogin(true))
 
       if (user !== undefined) {
-        getOrders()
+        // getOrders()
       }
     } else if (data.success === false) {
       alert(data.message)

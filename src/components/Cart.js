@@ -4,7 +4,12 @@ import arrow from '../assets/arrow.svg'
 import polygon from '../assets/polygon.svg'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { deleteItemCart, addItemCart, setOrders } from '../actions/coffeeAction'
+import {
+  deleteItemCart,
+  addItemCart,
+  setOrders,
+  resetCart
+} from '../actions/coffeeAction'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -47,6 +52,7 @@ function Cart({ removeTotalCost, addTotalCost, totalSum }) {
     }
     postOrder()
     history.push('/status')
+    dispatch(resetCart())
   }
   return (
     <div className="cartWrapper">

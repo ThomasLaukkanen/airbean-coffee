@@ -23,16 +23,16 @@ function Menu() {
   function removeTotalCost(item) {
     setTotalSum(totalSum - item.price)
   }
-  // FETCH COFFEE MENU
-  async function getCoffee() {
-    const response = await fetch('http://localhost:3002/api/coffee')
-    const data = await response.json()
-    // console.log(data)
-    dispatch(setCoffee(data))
-  }
 
   // RUN ON MENU VIEW LOAD
   useEffect(() => {
+    // FETCH COFFEE MENU and Dispatch
+    async function getCoffee() {
+      const response = await fetch('http://localhost:3002/api/coffee')
+      const data = await response.json()
+      dispatch(setCoffee(data))
+    }
+
     getCoffee()
   }, [])
 
