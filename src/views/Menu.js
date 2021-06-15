@@ -5,7 +5,7 @@ import bag from '../assets/bag.svg'
 import Cart from '../components/Cart'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCoffee } from '../actions/coffeeAction'
+import { setCoffee, setDiscount } from '../actions/coffeeAction'
 import dotsMenu from '../assets/dotsMenu.svg'
 import { setCart } from '../actions/coffeeAction'
 
@@ -14,28 +14,45 @@ function Menu() {
   const dispatch = useDispatch()
   const menu = useSelector((state) => state.menu)
   const [totalSum, setTotalSum] = useState(0)
+  const cart = useSelector((state) => state.cart)
 
+  // add to total cost in cart
   function addTotalCost(item) {
-    console.log(item)
     setTotalSum(totalSum + parseInt(item.price))
   }
 
+  // remove to total cost in cart
   function removeTotalCost(item) {
     setTotalSum(totalSum - item.price)
   }
 
   // RUN ON MENU VIEW LOAD
   useEffect(() => {
-    // FETCH COFFEE MENU and Dispatch
+    // FETCH COFFEE MENU and Dispatch to coffee menu
     async function getCoffee() {
       const response = await fetch('http://localhost:3002/api/coffee')
       const data = await response.json()
       dispatch(setCoffee(data))
     }
-
     getCoffee()
   }, [])
 
+  // check if cart items with id 1 and id 7
+  function checkCartDiscount() {
+    dispatch(setDiscount())
+
+    if (cart.find((item) => item.id === 8)) {
+      // setTotalSum(totalSum - 21)
+      // alert('NU')
+    }
+  }
+  useEffect(() => {
+    setTotalSum(
+      cart.reduce((ac, cv) => {
+        return ac + cv.price
+      }, 0)
+    )
+  }, [cart])
   return (
     <div className="menuWrapper">
       {show ? (
@@ -43,6 +60,7 @@ function Menu() {
           addTotalCost={addTotalCost}
           removeTotalCost={removeTotalCost}
           totalSum={totalSum}
+          checkCartDiscount={checkCartDiscount}
         />
       ) : (
         ''
@@ -63,10 +81,13 @@ function Menu() {
               <button
                 onClick={() => {
                   dispatch(setCart(item))
+                  checkCartDiscount()
                 }}
               >
                 <img
-                  onClick={() => addTotalCost(item)}
+                  onClick={() => {
+                    addTotalCost(item)
+                  }}
                   className="addButton"
                   src={addButton}
                   alt="button"

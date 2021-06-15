@@ -13,12 +13,11 @@ import {
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-function Cart({ removeTotalCost, addTotalCost, totalSum }) {
+function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
   const history = useHistory()
   const cart = useSelector((state) => state.cart)
   let user = useSelector((state) => state.user)
   const [filteredCart, setFilteredCart] = useState([])
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -54,6 +53,7 @@ function Cart({ removeTotalCost, addTotalCost, totalSum }) {
     history.push('/status')
     dispatch(resetCart())
   }
+
   return (
     <div className="cartWrapper">
       <img src={polygon} alt="polygon" className="polygon" />

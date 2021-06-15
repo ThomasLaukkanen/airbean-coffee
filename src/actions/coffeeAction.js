@@ -57,3 +57,10 @@ export const addItemCart = (cartItem) => {
 export const resetCart = () => {
   return { type: 'RESET_CART' }
 }
+
+export const setDiscount = (item) => {
+  return {
+    type: 'SET_DISCOUNT',
+    payload: item
+  }
+}

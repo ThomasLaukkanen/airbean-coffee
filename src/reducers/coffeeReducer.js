@@ -59,6 +59,38 @@ export const coffeeReducer = (state = initState, action) => {
         ...state,
         cart: []
       }
+    case 'SET_DISCOUNT':
+      /***
+       * if cart has id 1 & id 7 and NOT id 8
+       * then add id 8
+       * remove id 7
+       */
+      let newCart = [...state.cart]
+      if (
+        newCart.find((item) => item.id === 1) &&
+        newCart.find((item) => item.id === 7) &&
+        !newCart.find((item) => item.id === 8)
+      ) {
+        newCart = newCart.filter((item) => item.id !== 7)
+        newCart = [
+          ...newCart,
+          {
+            id: 8,
+            title: 'Gustav Adolfsbakelse',
+            desc: 'Världens godaste bakelse',
+            price: 19
+          }
+        ]
+        return {
+          ...state,
+          cart: [...newCart]
+        }
+      } else {
+        return {
+          ...state,
+          cart: [...state.cart]
+        }
+      }
     default:
       return state
   }
