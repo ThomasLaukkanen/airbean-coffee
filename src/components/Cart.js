@@ -78,6 +78,7 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
                   onClick={() => {
                     dispatch(addItemCart(cartItem))
                     addTotalCost(cartItem)
+                    checkCartDiscount()
                   }}
                 />
                 <span>{cart.filter((item) => item === cartItem).length}</span>
@@ -88,6 +89,7 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
                   onClick={() => {
                     dispatch(deleteItemCart(cartItem))
                     removeTotalCost(cartItem)
+                    checkCartDiscount()
                   }}
                 />
               </div>

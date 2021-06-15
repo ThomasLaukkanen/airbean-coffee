@@ -39,12 +39,13 @@ function Menu() {
 
   // check if cart items with id 1 and id 7
   function checkCartDiscount() {
+    console.log('nu kör jag')
     dispatch(setDiscount())
 
-    if (cart.find((item) => item.id === 8)) {
-      // setTotalSum(totalSum - 21)
-      // alert('NU')
-    }
+    // if (cart.find((item) => item.id === 8)) {
+    //   // setTotalSum(totalSum - 21)
+    //   // alert('NU')
+    // }
   }
   useEffect(() => {
     setTotalSum(
