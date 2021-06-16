@@ -18,6 +18,18 @@
     cursor: pointer;
   }
 
+  .circle {
+    position: absolute;
+    top: 16px;
+    right: 12px;
+    background: #e5674e;
+    z-index: 664;
+    border-radius: 50%;
+    height: 22px;
+    width: 22px;
+    color: white;
+    text-align: center;
+  }
   h1 {
     font-size: 42px;
     text-align: center;
@@ -25,26 +37,22 @@
     color: $brown;
     margin-top: 119px;
   }
-  ul {
-    // padding: 32px;
-    max-width: 600px;
+
+  .menuList {
     max-width: 311px;
+
     li {
-      width: 311px;
       list-style-type: none;
       display: flex;
       align-items: center;
-      // width: 100%;
-      // justify-content: space-between;
 
+      .listTextWrapper {
+        min-width: 100%;
+      }
       .listFlex {
         display: flex;
         justify-content: space-between;
-        width: 100%;
-        flex-grow: 1;
-      }
-      .listTextWrapper {
-        width: 100%;
+        width: 278px;
       }
       h3 {
         font-family: PT Serif;
@@ -53,14 +61,12 @@
         font-size: 23px;
         line-height: 120%;
         color: $brown;
-        // flex-grow: 1;
         flex-shrink: 0;
       }
 
       .dotsMenu {
         flex-grow: 1;
         width: 100%;
-        // object-position: 0px 8px;
         overflow: hidden;
         img {
           width: 200px;
@@ -70,7 +76,6 @@
           object-fit: fill;
         }
       }
-
       small {
         color: $brown;
       }
@@ -97,5 +102,12 @@
       height: 73px;
       object-position: 50% 0%;
     }
+  }
+  .menuList
+    > li:nth-child(7)
+    > div:nth-child(2)
+    > div:nth-child(1)
+    > h3:nth-child(1) {
+    font-size: 21px;
   }
 }

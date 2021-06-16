@@ -66,12 +66,14 @@ export const coffeeReducer = (state = initState, action) => {
        * remove id 7
        */
       let newCart = [...state.cart]
+
       if (
         newCart.find((item) => item.id === 1) &&
         newCart.find((item) => item.id === 7) &&
         !newCart.find((item) => item.id === 8)
       ) {
         newCart = newCart.filter((item) => item.id !== 7)
+
         newCart = [
           ...newCart,
           {
@@ -83,6 +85,7 @@ export const coffeeReducer = (state = initState, action) => {
         ]
         return {
           ...state,
+
           cart: [...newCart]
         }
       } else if (
@@ -90,6 +93,7 @@ export const coffeeReducer = (state = initState, action) => {
         !newCart.find((item) => item.id === 1)
       ) {
         newCart = newCart.filter((item) => item.id !== 8)
+
         newCart = [
           ...newCart,
           {
@@ -101,11 +105,13 @@ export const coffeeReducer = (state = initState, action) => {
         ]
         return {
           ...state,
+
           cart: [...newCart]
         }
       } else {
         return {
           ...state,
+
           cart: [...state.cart]
         }
       }

@@ -33,13 +33,15 @@ function Menu() {
       const response = await fetch('http://localhost:3002/api/coffee')
       const data = await response.json()
       dispatch(setCoffee(data))
+      document.querySelector(
+        '.menuWrapper > ul > :nth-child(8)'
+      ).style.display = 'none'
     }
     getCoffee()
   }, [])
 
   // check if cart items with id 1 and id 7
   function checkCartDiscount() {
-    console.log('nu kör jag')
     dispatch(setDiscount())
 
     // if (cart.find((item) => item.id === 8)) {
@@ -54,6 +56,7 @@ function Menu() {
       }, 0)
     )
   }, [cart])
+
   return (
     <div className="menuWrapper">
       {show ? (
@@ -74,8 +77,9 @@ function Menu() {
       >
         <img src={bag} alt="cartIcon" />
       </button>
+      {cart.length > 0 ? <div className="circle">{cart.length}</div> : ''}
       <h1>Menu</h1>
-      <ul>
+      <ul className="menuList">
         {menu.map((item) => {
           return (
             <li key={item.id}>
@@ -94,6 +98,7 @@ function Menu() {
                   alt="button"
                 />
               </button>
+
               <div className="listTextWrapper">
                 <div className="listFlex">
                   <h3>{item.title}</h3>
