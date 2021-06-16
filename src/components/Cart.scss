@@ -22,6 +22,11 @@
     overflow-x: hidden;
     scrollbar-width: none;
   }
+  .emptyCart {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    color: $brown;
+  }
   .upArrow {
     width: 8px;
     height: 4.7px;
@@ -48,6 +53,7 @@
   h1 {
     margin-top: 40px;
     font-size: 32px;
+    margin-bottom: 40px;
   }
   button {
     background: $brown;

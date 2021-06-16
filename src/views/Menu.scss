@@ -28,11 +28,13 @@
   ul {
     // padding: 32px;
     max-width: 600px;
+    max-width: 311px;
     li {
       width: 311px;
       list-style-type: none;
       display: flex;
       align-items: center;
+      // width: 100%;
       // justify-content: space-between;
 
       .listFlex {
@@ -58,7 +60,15 @@
       .dotsMenu {
         flex-grow: 1;
         width: 100%;
-        object-position: 0px 8px;
+        // object-position: 0px 8px;
+        overflow: hidden;
+        img {
+          width: 200px;
+          height: 100%;
+
+          object-position: 0px 7px;
+          object-fit: fill;
+        }
       }
 
       small {

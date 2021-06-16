@@ -60,6 +60,11 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
       <h1>Din beställning</h1>
 
       <ul>
+        {cart.length < 1 ? (
+          <h3 className="emptyCart">Inga varor i varukorgen</h3>
+        ) : (
+          ''
+        )}
         {filteredCart.map((cartItem, index) => (
           <li key={index}>
             <div>
@@ -69,7 +74,7 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
                 <small>{cartItem.price}kr</small>
               </div>
               <img src={dots} alt="dots" className="dots" />
-              {/* <div className="divDots" /> */}
+
               <div className="amountPicker">
                 <img
                   src={arrow}

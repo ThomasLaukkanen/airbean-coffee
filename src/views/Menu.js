@@ -97,7 +97,9 @@ function Menu() {
               <div className="listTextWrapper">
                 <div className="listFlex">
                   <h3>{item.title}</h3>
-                  <img src={dotsMenu} alt="..." className="dotsMenu" />
+                  <div className="dotsMenu">
+                    <img src={dotsMenu} alt="..." />
+                  </div>
                   <h3>{item.price} kr</h3>
                 </div>
                 <small>{item.desc}</small>
