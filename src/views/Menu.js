@@ -43,11 +43,6 @@ function Menu() {
   // check if cart items with id 1 and id 7
   function checkCartDiscount() {
     dispatch(setDiscount())
-
-    // if (cart.find((item) => item.id === 8)) {
-    //   // setTotalSum(totalSum - 21)
-    //   // alert('NU')
-    // }
   }
   useEffect(() => {
     setTotalSum(
