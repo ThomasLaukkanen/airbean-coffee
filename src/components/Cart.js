@@ -73,7 +73,9 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
                 <br />
                 <small>{cartItem.price}kr</small>
               </div>
-              <img src={dots} alt="dots" className="dots" />
+              <div className="divDots">
+                <img src={dots} alt="dots" className="dots" />
+              </div>
 
               <div className="amountPicker">
                 <img
