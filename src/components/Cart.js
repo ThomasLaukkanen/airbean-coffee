@@ -72,6 +72,7 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
         ) : (
           ''
         )}
+
         {filteredCart.map((cartItem, index) => (
           <li key={index}>
             <div>

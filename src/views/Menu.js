@@ -65,6 +65,7 @@ function Menu() {
           removeTotalCost={removeTotalCost}
           totalSum={totalSum}
           checkCartDiscount={checkCartDiscount}
+          k
         />
       ) : (
         ''
