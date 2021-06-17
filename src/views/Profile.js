@@ -14,7 +14,6 @@ function Profile() {
   const [total, setTotal] = useState(0)
 
   function countTotal() {
-    // orders.forEach((order) => setTotal(total + order.total))
     setTotal(
       orders.reduce((a, c) => {
         return a + c.total

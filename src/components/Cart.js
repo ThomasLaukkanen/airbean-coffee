@@ -19,6 +19,7 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
   let user = useSelector((state) => state.user)
   const [filteredCart, setFilteredCart] = useState([])
   const dispatch = useDispatch()
+  let loggedIn = useSelector((state) => state.loggedIn)
 
   useEffect(() => {
     function filteredMenu() {
@@ -29,29 +30,33 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
   }, [cart])
 
   function sendOrder() {
-    async function postOrder() {
-      let itemIdArr = []
-      cart.map((item) => itemIdArr.push(item.id))
+    if (loggedIn) {
+      async function postOrder() {
+        let itemIdArr = []
+        cart.map((item) => itemIdArr.push(item.id))
 
-      let postBody = {
-        userId: user.id,
-        items: itemIdArr
+        let postBody = {
+          userId: user.id,
+          items: itemIdArr
+        }
+        let settings = {
+          body: JSON.stringify(postBody),
+          headers: {
+            'Content-Type': 'Application/json'
+          },
+          method: 'POST'
+        }
+        const reponse = await fetch('http://localhost:3002/api/order', settings)
+        const data = await reponse.json()
+        dispatch(setOrders(data))
+        console.log(data)
       }
-      let settings = {
-        body: JSON.stringify(postBody),
-        headers: {
-          'Content-Type': 'Application/json'
-        },
-        method: 'POST'
-      }
-      const reponse = await fetch('http://localhost:3002/api/order', settings)
-      const data = await reponse.json()
-      dispatch(setOrders(data))
-      console.log(data)
+      postOrder()
+      history.push('/status')
+      dispatch(resetCart())
+    } else {
+      history.push('/profile')
     }
-    postOrder()
-    history.push('/status')
-    dispatch(resetCart())
   }
 
   return (
@@ -61,7 +66,9 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
 
       <ul>
         {cart.length < 1 ? (
-          <h3 className="emptyCart">Inga varor i varukorgen</h3>
+          <h4 className="emptyCart">
+            Din korg är tom - men så behöver det inte vara
+          </h4>
         ) : (
           ''
         )}
@@ -113,7 +120,9 @@ function Cart({ removeTotalCost, addTotalCost, totalSum, checkCartDiscount }) {
         <small>inkl moms + drönarleverans</small>
       </div>
 
-      <button onClick={sendOrder}>Take my money!</button>
+      <button onClick={sendOrder}>
+        {!loggedIn ? 'Vänligen Logga In' : 'Take my money!'}
+      </button>
     </div>
   )
 }

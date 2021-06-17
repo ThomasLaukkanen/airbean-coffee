@@ -10,7 +10,6 @@ function Login() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   let user = useSelector((state) => state.user)
-
   const dispatch = useDispatch('')
 
   async function getOrders() {
@@ -18,8 +17,7 @@ function Login() {
       `http://localhost:3002/api/order/history/${user.id}`
     )
     const data = await promise.json()
-    // console.log('GET ORDER HISTORY', data)
-    // console.log('GET ORDER HISTORY USER ID IS =', user.id)
+
     dispatch(setOrders(data))
     dispatch(setEmailAccount(email))
   }
@@ -37,12 +35,12 @@ function Login() {
 
     const response = await fetch('http://localhost:3002/api/account', settings)
     const data = await response.json()
-    // console.log(data)
+
     if (data.success) {
       dispatch(setLogin(true))
-
+      sessionStorage.setItem('loggedIn', true)
       if (user !== undefined) {
-        // getOrders()
+        getOrders()
       }
     } else if (data.success === false) {
       alert(data.message)
@@ -56,7 +54,7 @@ function Login() {
       <p>
         Genom att skapa ett konto nedan kan du spara och se din orderhistorik.
       </p>
-      <form>
+      <form onSubmit={createUser}>
         <label>
           <small>Namn</small>
           <br />
@@ -64,6 +62,7 @@ function Login() {
             onKeyUp={(event) => setUsername(event.target.value)}
             type="text"
             placeholder="Sixten Kaffelövér"
+            required
           />
         </label>
         <br />
@@ -74,15 +73,16 @@ function Login() {
             onKeyUp={(event) => setEmail(event.target.value)}
             type="email"
             placeholder="sixten.kaffelover@zocom.se"
+            required
           />
         </label>
         <br />
         <label>
-          <input type="radio" />
+          <input type="radio" required />
           <small>GDPR OK!</small>
         </label>
         <br />
-        <button onClick={createUser}>LOGGA IN</button>
+        <button>LOGGA IN</button>
       </form>
     </div>
   )
